@@ -65,6 +65,11 @@
                     cur = Number(cur);
                     cur = cur + 1;
                     document.getElementById("ten").innerText = cur;
+                    if (cur % 60 == 0) {
+                        let min = Number(document.getElementById("min").innerText);
+                        min = min + 1;
+                        document.getElementById("min").innerText = min;
+                    }
                 }
             }
         </script>
@@ -74,7 +79,7 @@
             <h1>Visit Time</h1>
             <h2><span id="ten">0</span> deciseconds</h2>
             <h2><span id="sec">0</span> seconds</h2>
-            <h2><span id="min"></span> minutes</h2>
+            <h2><span id="min">0</span> minutes</h2>
             <h2>you've visited this page <span id="streak"></span> times</h2>
         </div>
     </body>
