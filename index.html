@@ -1,82 +1,76 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Visit Time || kpoovakan</title>
-        <style>
-            body {
-                background-color: black;
-                color: white;
-                font-family: sans-serif;
-                position: relative;
-                display: block;
-                width: 100vw;
-                height: 100vh;
-                padding: 0;
-                margin: 0;
-                text-align: center;
-                font-size: 31px;
-                width: 100%;
+    <title>Visit Time || kpoovakan</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            position: relative;
+            display: block;
+            width: 100vw;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            font-size: 31px;
+            width: 100%;
+        }
+        .wrapper {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <script>
+        const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+        window.addEventListener("load", async function() {
+            await streak();
+            ten();
+            sec();
+            //min();
+        });
+        function streak() {
+            var streak = Number(window.localStorage.getItem("visittimeStreak"));
+            if (streak) {
+                streak++;
+            } else {
+                var streak = 1;
             }
-            .wrapper {
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-        </style>
-        <script>
-            const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-            window.addEventListener("load", async function() {
-                await streak();
-                ten();
-                sec();
-                //min();
-            });
-            function streak() {
-                var streak = Number(window.localStorage.getItem("visittimeStreak"));
-                if (streak) {
-                    streak++;
-                } else {
-                    var streak = 1;
-                }
-                document.getElementById("str").innerText = streak;
-                window.localStorage.setItem("visittimeStreak", streak);
-            }
-            async function sec() {
-                while (true) {
-                    await wait(1000);
-                    let cur = document.getElementById("sec").innerText;
-                    cur = Number(cur);
-                    cur = cur + 1;
-                    document.getElementById("sec").innerText = cur;
-                    if (cur % 60 == 0) {
-                        let min = Number(document.getElementById("min").innerText);
-                        min = min + 1;
-                        document.getElementById("min").innerText = min;
-                    }
+            document.getElementById("str").innerText = streak;
+            window.localStorage.setItem("visittimeStreak", streak);
+        }
+        async function sec() {
+            while (true) {
+                await wait(1000);
+                let cur = document.getElementById("sec").innerText;
+                cur = Number(cur);
+                cur = cur + 1;
+                document.getElementById("sec").innerText = cur;
+                if (cur % 60 == 0) {
+                    let min = Number(document.getElementById("min").innerText);
+                    min = min + 1;
+                    document.getElementById("min").innerText = min;
                 }
             }
-            async function ten() {
-                while (true) {
-                    await wait(100);
-                    let cur = document.getElementById("ten").innerText;
-                    cur = Number(cur);
-                    cur = cur + 1;
-                    document.getElementById("ten").innerText = cur;
-                }
+        }
+        async function ten() {
+            while (true) {
+                await wait(100);
+                let cur = document.getElementById("ten").innerText;
+                cur = Number(cur);
+                cur = cur + 1;
+                document.getElementById("ten").innerText = cur;
             }
-        </script>
-    </head>
-    <body>
-        <div class=wrapper>
-            <h1>Visit Time</h1>
-            <p><span id=ten>0</span> deciseconds</p>
-            <p><span id=sec>0</span> seconds</p>
-            <p><span id=min>0</span> minutes</p>
-            <p><span id=hr>0</span> hours</p>
-            <p><span id=day>0</span> days</p>
-            <p>you've visited this page <span id=str></span> times</p>
-        </div>
-    </body>
-</html>
+        }
+    </script>
+    <div class=wrapper>
+        <h1>Visit Time</h1>
+        <p><span id=ten>0</span> deciseconds</p>
+        <p><span id=sec>0</span> seconds</p>
+        <p><span id=min>0</span> minutes</p>
+        <p><span id=hr>0</span> hours</p>
+        <p><span id=day>0</span> days</p>
+        <p>you've visited this page <span id=str></span> times</p>
+    </div>
