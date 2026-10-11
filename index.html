@@ -50,7 +50,11 @@
                     document.getElementById("min").innerText = min;
                     if (min % 60 == 0) {
                         let hr = Number(document.getElementById("hr").innerText) + 1;
-                        hr = hr + 1;
+                        document.getElementById("hr").innerText = hr;
+                        if (hr % 24 == 0) {
+                            let day = Number(document.getElementById("day").innerText) + 1;
+                            document.getElementById("day").innerText = day;
+                        }
                     }
                 }
             }
