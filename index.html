@@ -7,20 +7,19 @@
                 background-color: black;
                 color: white;
                 font-family: sans-serif;
-                font-size: 31px;
                 position: relative;
                 display: block;
                 width: 100vw;
                 height: 100vh;
                 padding: 0;
                 margin: 0;
+                text-align: center;
+                font-size: 31px;
             }
             h1 {
-                text-align: center;
                 width: 100%;
             }
             h2 {
-                text-align: center;
                 width: 100%;
             }
             .wrapper {
@@ -46,7 +45,7 @@
                 } else {
                     var streak = 1;
                 }
-                document.getElementById("streak").innerText = streak;
+                document.getElementById("str").innerText = streak;
                 window.localStorage.setItem("visittimeStreak", streak);
             }
             async function sec() {
@@ -56,6 +55,11 @@
                     cur = Number(cur);
                     cur = cur + 1;
                     document.getElementById("sec").innerText = cur;
+                    if (cur % 60 == 0) {
+                        let min = Number(document.getElementById("min").innerText);
+                        min = min + 1;
+                        document.getElementById("min").innerText = min;
+                    }
                 }
             }
             async function ten() {
@@ -65,22 +69,19 @@
                     cur = Number(cur);
                     cur = cur + 1;
                     document.getElementById("ten").innerText = cur;
-                    if (cur % 60 == 0) {
-                        let min = Number(document.getElementById("min").innerText);
-                        min = min + 1;
-                        document.getElementById("min").innerText = min;
-                    }
                 }
             }
         </script>
     </head>
     <body>
-        <div class="wrapper">
+        <div class=wrapper>
             <h1>Visit Time</h1>
-            <h2><span id="ten">0</span> deciseconds</h2>
-            <h2><span id="sec">0</span> seconds</h2>
-            <h2><span id="min">0</span> minutes</h2>
-            <h2>you've visited this page <span id="streak"></span> times</h2>
+            <h2><span id=ten>0</span> deciseconds</h2>
+            <h2><span id=sec>0</span> seconds</h2>
+            <h2><span id=min>0</span> minutes</h2>
+            <h2><span id=hr>0</span> hours</h2>
+            <h2><span id=day>0</span> days</h2>
+            <h2>you've visited this page <span id=str></span> times</h2>
         </div>
     </body>
 </html>
