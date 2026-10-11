@@ -46,7 +46,7 @@
                 let cur = (Number(document.getElementById("sec").innerText)) + 1;
                 document.getElementById("sec").innerText = cur;
                 if (cur % 60 == 0) {
-                    let min = Number(document.getElementById("min").innerText);
+                    let min = (Number(document.getElementById("min").innerText)) + 1;
                     document.getElementById("min").innerText = min;
                     if (min % 60 == 0) {
                         let hr = Number(document.getElementById("hr").innerText) + 1;
@@ -64,6 +64,11 @@
                 await wait(100);
                 let cur = (Number(document.getElementById("ten").innerText)) + 1;
                 document.getElementById("ten").innerText = cur;
+            }
+        }
+        async function hr(x) {
+            if (x % 60 == 0) {
+                alert("hour");
             }
         }
     </script>
