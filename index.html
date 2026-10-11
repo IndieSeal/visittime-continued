@@ -47,8 +47,11 @@
                 document.getElementById("sec").innerText = cur;
                 if (cur % 60 == 0) {
                     let min = Number(document.getElementById("min").innerText);
-                    min = min + 1;
                     document.getElementById("min").innerText = min;
+                    if (min % 60 == 0) {
+                        let hr = Number(document.getElementById("hr").innerText) + 1;
+                        hr = hr + 1;
+                    }
                 }
             }
         }
