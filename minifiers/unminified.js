@@ -40,3 +40,6 @@ async function ten() {
         document.getElementById("ten").innerText = cur;
     }
 }
+window.addEventListener("click", function() {
+    document.body.style.backgroundImg = "url(img/clock.svg)";
+});
