@@ -1,10 +1,10 @@
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
     window.addEventListener("load", async function() {
-        streak();
+        str();
         ten();
         sec();
     });
-    function streak() {
+    function str() {
         var streak = Number(window.localStorage.getItem("vtStr"));
         if (streak) {
             streak++;
@@ -38,10 +38,5 @@
             await wait(100);
             let cur = (Number(document.getElementById("ten").innerText)) + 1;
             document.getElementById("ten").innerText = cur;
-        }
-    }
-    async function hr(x) {
-        if (x % 60 == 0) {
-            alert("hour");
         }
     }
