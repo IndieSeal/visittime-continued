@@ -1,63 +1,61 @@
 <!DOCTYPE html>
-    <title>Visit Time || kpoovakan</title>
-    <style>
-        body{background-color:#000;color:#fff;font-family:sans-serif;position:relative;height:100vh;padding:0;margin:0;text-align:center;font-size:31px;width:100%}.wrapper{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-    </style>
-    <script>
-        const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-        window.addEventListener("load", async function() {
-            streak();
-            ten();
-            sec();
-        });
-        function streak() {
-            var streak = Number(window.localStorage.getItem("vtStr"));
-            if (streak) {
-                streak++;
-            } else {
-                var streak = 1;
-            }
-            document.getElementById("str").innerText = streak;
-            window.localStorage.setItem("vtStr", streak);
+<title>Visit Time || kpoovakan</title>
+<style>
+    body{background-color:#000;color:#fff;font-family:sans-serif;height:95vh;padding:5vh;box-sizing:border-box;margin:0;text-align:center;font-size:31px;width:100%}
+</style>
+<script>
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    window.addEventListener("load", async function() {
+        streak();
+        ten();
+        sec();
+    });
+    function streak() {
+        var streak = Number(window.localStorage.getItem("vtStr"));
+        if (streak) {
+            streak++;
+        } else {
+            var streak = 1;
         }
-        async function sec() {
-            while (true) {
-                await wait(1000);
-                let cur = (Number(document.getElementById("sec").innerText)) + 1;
-                document.getElementById("sec").innerText = cur;
-                if (cur % 60 == 0) {
-                    let min = (Number(document.getElementById("min").innerText)) + 1;
-                    document.getElementById("min").innerText = min;
-                    if (min % 60 == 0) {
-                        let hr = Number(document.getElementById("hr").innerText) + 1;
-                        document.getElementById("hr").innerText = hr;
-                        if (hr % 24 == 0) {
-                            let day = Number(document.getElementById("day").innerText) + 1;
-                            document.getElementById("day").innerText = day;
-                        }
+        document.getElementById("str").innerText = streak;
+        window.localStorage.setItem("vtStr", streak);
+    }
+    async function sec() {
+        while (true) {
+            await wait(1000);
+            let cur = (Number(document.getElementById("sec").innerText)) + 1;
+            document.getElementById("sec").innerText = cur;
+            if (cur % 60 == 0) {
+                let min = (Number(document.getElementById("min").innerText)) + 1;
+                document.getElementById("min").innerText = min;
+                if (min % 60 == 0) {
+                    let hr = Number(document.getElementById("hr").innerText) + 1;
+                    document.getElementById("hr").innerText = hr;
+                    if (hr % 24 == 0) {
+                        let day = Number(document.getElementById("day").innerText) + 1;
+                        document.getElementById("day").innerText = day;
                     }
                 }
             }
         }
-        async function ten() {
-            while (true) {
-                await wait(100);
-                let cur = (Number(document.getElementById("ten").innerText)) + 1;
-                document.getElementById("ten").innerText = cur;
-            }
+    }
+    async function ten() {
+        while (true) {
+            await wait(100);
+            let cur = (Number(document.getElementById("ten").innerText)) + 1;
+            document.getElementById("ten").innerText = cur;
         }
-        async function hr(x) {
-            if (x % 60 == 0) {
-                alert("hour");
-            }
+    }
+    async function hr(x) {
+        if (x % 60 == 0) {
+            alert("hour");
         }
-    </script>
-    <div class=wrapper>
-        <h1>Visit Time</h1>
-        <p><span id=ten>0</span> deciseconds</p>
-        <p><span id=sec>0</span> seconds</p>
-        <p><span id=min>0</span> minutes</p>
-        <p><span id=hr>0</span> hours</p>
-        <p><span id=day>0</span> days</p>
-        <p>you've visited this page <span id=str></span> times</p>
-    </div>
+    }
+</script>
+<h1>Visit Time</h1>
+<p><span id=ten>0</span> deciseconds</p>
+<p><span id=sec>0</span> seconds</p>
+<p><span id=min>0</span> minutes</p>
+<p><span id=hr>0</span> hours</p>
+<p><span id=day>0</span> days</p>
+<p>you've visited this page <span id=str></span> times</p>
