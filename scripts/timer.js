@@ -1,4 +1,17 @@
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const decisecondsElement = document.getElementById("ten");
+const secondsElement = document.getElementById("sec");
+const minutesElement = document.getElementById("min");
+const hoursElement = document.getElementById("hr");
+const daysElement = document.getElementById("day");
+
+var deciseconds = 0;
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+var days = 0;
+
 window.addEventListener("load", async function() {
     str();
     ten();
@@ -15,17 +28,17 @@ function str() {
 async function sec() {
     while (true) {
         await wait(1000);
-        let cur = (Number(document.getElementById("sec").innerText)) + 1;
-        document.getElementById("sec").innerText = cur;
-        if (cur % 60 == 0) {
-            let min = (Number(document.getElementById("min").innerText)) + 1;
-            document.getElementById("min").innerText = min;
-            if (min % 60 == 0) {
-                let hr = Number(document.getElementById("hr").innerText) + 1;
-                document.getElementById("hr").innerText = hr;
-                if (hr % 24 == 0) {
-                    let day = Number(document.getElementById("day").innerText) + 1;
-                    document.getElementById("day").innerText = day;
+        seconds++;
+        secondsElement.innerText = seconds.toLocaleString();
+        if (seconds % 60 == 0) {
+            minutes++;
+            minutesElement.innerText = minutes.toLocaleString();
+            if (minutes % 60 == 0) {
+                hours++;
+                hoursElement.innerText = hours.toLocaleString();
+                if (hours % 24 == 0) {
+                    days++;
+                    daysElement.innerText = days.toLocaleString();
                 }
             }
         }
@@ -34,8 +47,8 @@ async function sec() {
 async function ten() {
     while (true) {
         await wait(100);
-        let cur = (Number(document.getElementById("ten").innerText)) + 1;
-        document.getElementById("ten").innerText = cur;
+        deciseconds++;
+        decisecondsElement.innerText = deciseconds.toLocaleString();
     }
 }
 window.addEventListener("click", function() {

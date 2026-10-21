@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Visit Time - kpoovakan</title>
-        <meta name="robots" content="noindex"> 
-
+        <title>Visit Time</title>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
     </head>
     <body>
+        <div id="snowParticles" class="screenOverlay"></div>
+
         <h1>Visit Time</h1>
         <p><span id=ten>0</span> deciseconds</p>
         <p><span id=sec>0</span> seconds</p>
@@ -15,6 +15,8 @@
         <p><span id=day>0</span> days</p>
         <p>you've visited this page <span id=str></span> times</p>
 
+        <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
         <script type="module" src="./scripts/timer.js"></script>
+        <script src="./scripts/snowParticles.js"></script>
     </body>
 </html>
