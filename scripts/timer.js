@@ -6,11 +6,9 @@ window.addEventListener("load", async function() {
 });
 function str() {
     var streak = Number(window.localStorage.getItem("vtStr"));
-    if (streak) {
-        streak++;
-    } else {
-        var streak = 1;
-    }
+    if (!streak) var streak = 1;
+    else streak++;
+
     document.getElementById("str").innerText = streak;
     window.localStorage.setItem("vtStr", streak);
 }
