@@ -21,9 +21,9 @@ restartElement.onclick = resetTimer;
 
 window.addEventListener("load", async function() {
     deciseconds = Number(localStorage.getItem('Deciseconds'));
-    // deciseconds = 315359900; This was made for testing the timers
-    updateText();
+    //deciseconds = 35990; This was made for testing the timers
 
+    updateText();
     updateStreak();
 });
 
@@ -62,6 +62,9 @@ function updateStreak() {
     window.localStorage.setItem("vtStr", streak);
 }
 
+var hourClockAud = document.getElementById("hourClock"); 
+hourClockAud.loop = false;
+
 async function sec() {
     while (true) {
         await wait(100);
@@ -69,6 +72,7 @@ async function sec() {
 
         deciseconds++;
         decisecondsElement.innerText = deciseconds.toLocaleString();
+        if((deciseconds % 36000) == 0) hourClockAud.play();
 
         updateText();
         localStorage.setItem('Deciseconds', deciseconds);
