@@ -14,24 +14,21 @@ const timerElement = document.getElementById("timer");
 
 // I wish this was C# to do setters and getters, but aight ;__;
 var deciseconds = 0;
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-var days = 0;
-var years = 0;
-
 var isCounting = false;
 
 startStopElement.onclick = startTimer;
 restartElement.onclick = resetTimer;
 
 window.addEventListener("load", async function() {
-    str();
+    deciseconds = Number(localStorage.getItem('Deciseconds'));
+    // deciseconds = 315359900; This was made for testing the timers
+    updateText();
+
+    updateStreak();
 });
 
 function startTimer(){
     isCounting = true;
-
     sec();
     
     startStopElement.innerHTML = 'Pause';
@@ -51,25 +48,12 @@ function resetTimer(){
     stopTimer();
 
     deciseconds = 0;
-    decisecondsElement.innerText = deciseconds.toLocaleString();
+    localStorage.setItem('Deciseconds', deciseconds);
 
-    seconds = 0;
-    secondsElement.innerText = seconds.toLocaleString();
-
-    minutes = 0;
-    minutesElement.innerText = minutes.toLocaleString();
-
-    hours = 0;
-    hoursElement.innerText = hours.toLocaleString();
-
-    days = 0;
-    daysElement.innerText = days.toLocaleString();
-
-    years = 0;
-    yearsElement.innerText = years.toLocaleString();
+    updateText();
 }
 
-function str() {
+function updateStreak() {
     var streak = Number(window.localStorage.getItem("vtStr"));
     if (!streak) var streak = 1;
     else streak++;
@@ -77,41 +61,50 @@ function str() {
     document.getElementById("str").innerText = streak.toLocaleString();
     window.localStorage.setItem("vtStr", streak);
 }
+
 async function sec() {
     while (true) {
-        let yearString = years != 0 ? `${years.toString().padStart(2, '0')}y:` : '';
-        let dayString = days != 0 || (days == 0 && years != 0) ? `${(days%365).toString().padStart(3, '0')}ᵈ:` : '';
-        
-        timerElement.innerHTML = `${yearString}${dayString}${(hours%24).toString().padStart(2, '0')}ʰ:${(minutes%60).toString().padStart(2, '0')}ᵐ:${(seconds%60).toString().padStart(2, '0')}ˢ.${deciseconds%10}ᵈ`;
         await wait(100);
         if(!isCounting) return;
 
         deciseconds++;
         decisecondsElement.innerText = deciseconds.toLocaleString();
 
-        if (deciseconds % 10 != 0) continue;
-
-        seconds++;
-        secondsElement.innerText = seconds.toLocaleString();
-        if (seconds % 60 != 0) continue;
-
-        minutes++;
-        minutesElement.innerText = minutes.toLocaleString();
-        if (minutes % 60 != 0) continue;
-        
-        hours++;
-        hoursElement.innerText = hours.toLocaleString();
-        if (hours % 24 != 0) continue;
-
-        days++;
-        daysElement.innerText = days.toLocaleString();
-        if (days % 365 != 0) continue;
-
-        years++;
-        yearsElement.innerText = years.toLocaleString();
+        updateText();
+        localStorage.setItem('Deciseconds', deciseconds);
     }
 }
 
-window.addEventListener("click", function() {
-    document.body.style.backgroundImg = "url(img/clock.svg)";
-});
+function updateText(){    
+    updateClock();
+    updateOverall();
+}
+
+function updateClock(){
+    let deciDisplay = deciseconds%10;
+    let seconds = Math.floor(deciseconds/10)%60;
+    let minutes = Math.floor(deciseconds/600)%60;
+    let hours = Math.floor(deciseconds/36000)%24;
+    let days = Math.floor(deciseconds/864000)%365;
+    let years = Math.floor(deciseconds/315360000);
+
+    let dayString = days != 0 || years != 0 ? `${(days).toString().padStart(3, '0')}ᵈ:` : '';
+    let yearString = years != 0 ? `${years.toString().padStart(2, '0')}y:` : '';
+
+    timerElement.innerHTML = `${yearString}${dayString}${hours.toString().padStart(2, '0')}ʰ:${minutes.toString().padStart(2, '0')}ᵐ:${seconds.toString().padStart(2, '0')}ˢ.${deciDisplay}ᵈ`;
+}
+
+function updateOverall(){
+    let seconds = Math.floor(deciseconds/10);
+    let minutes = Math.floor(seconds/60);
+    let hours = Math.floor(minutes/60);
+    let days = Math.floor(hours/24);
+    let years = Math.floor(days/365);
+
+    decisecondsElement.innerText = deciseconds.toLocaleString();
+    secondsElement.innerText = seconds.toLocaleString();
+    minutesElement.innerText = minutes.toLocaleString();
+    hoursElement.innerText = hours.toLocaleString();
+    daysElement.innerText = days.toLocaleString();
+    yearsElement.innerText = years.toLocaleString();
+}
