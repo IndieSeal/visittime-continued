@@ -3,6 +3,14 @@
     <head>
         <title>Visit Time</title>
         <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+AR+Guides&display=swap" rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playwrite+IT+Trad:wght@100..400&display=swap" rel="stylesheet">
     </head>
     <body>
         <div id="snowParticles" class="screenOverlay"></div>
@@ -13,10 +21,8 @@
         </div>
             -->
 
-        <div style="display: flex; height: 100px;"></div>
-
         <div class="center">
-            <h1 style="margin: 0;">Visit Time</h1>
+            <h class="fancyFont" style="margin: 0; font-size: 70px;">Visit Time</h>
             
             <div style="display: flex; width: 100%; flex-direction: column; justify-content: center;">
                 <div class="divideClose">
@@ -35,7 +41,8 @@
                 </div>
             </div>
 
-            <p>you've visited this page <span id=str></span> times</p>
+            <p style="margin: 20px 0;" id="timer">00ʰ:00ᵐ:00ˢ.0ᵈ</p>
+            <p style="margin: 0;">you've visited this page <span id=str></span> times</p>
 
             <div style="display: flex; height: 70px;"></div>
 
@@ -44,7 +51,6 @@
                 <button class="restart" id="Restart">Reset</button>
             </div>
         </div>
-
 
         <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
         <script type="module" src="./scripts/timer.js"></script>

@@ -10,6 +10,9 @@ const yearsElement = document.getElementById("year");
 const startStopElement = document.getElementById("StartStop");
 const restartElement = document.getElementById("Restart");
 
+const timerElement = document.getElementById("timer");
+
+// I wish this was C# to do setters and getters, but aight ;__;
 var deciseconds = 0;
 var seconds = 0;
 var minutes = 0;
@@ -76,6 +79,10 @@ function str() {
 }
 async function sec() {
     while (true) {
+        let yearString = years != 0 ? `${years.toString().padStart(2, '0')}y:` : '';
+        let dayString = days != 0 || (days == 0 && years != 0) ? `${(days%365).toString().padStart(3, '0')}ᵈ:` : '';
+        
+        timerElement.innerHTML = `${yearString}${dayString}${(hours%24).toString().padStart(2, '0')}ʰ:${(minutes%60).toString().padStart(2, '0')}ᵐ:${(seconds%60).toString().padStart(2, '0')}ˢ.${deciseconds%10}ᵈ`;
         await wait(100);
         if(!isCounting) return;
 
