@@ -7,20 +7,37 @@
     <body>
         <div id="snowParticles" class="screenOverlay"></div>
 
+            <!--
         <div class="corner">
             <img class="corner clock" src="./imgs/clock.svg">
         </div>
+            -->
 
         <div style="display: flex; height: 100px;"></div>
-        <div>
+
+        <div class="center">
             <h1 style="margin: 0;">Visit Time</h1>
-            <p><span id=ten>0</span> deciseconds</p>
-            <p><span id=sec>0</span> seconds</p>
-            <p><span id=min>0</span> minutes</p>
-            <p><span id=hr>0</span> hours</p>
-            <p><span id=day>0</span> days</p>
+            
+            <div style="display: flex; width: 100%; flex-direction: column; justify-content: center;">
+                <div class="divideClose">
+                    <p><span id=ten>0</span> deciseconds</p>
+                    <p><span id=sec>0</span> seconds</p>
+                </div>
+            
+                <div class="divideClose">
+                    <p><span id=min>0</span> minutes</p>
+                    <p><span id=hr>0</span> hours</p>
+                </div>
+        
+                <div class="divideClose">
+                    <p><span id=day>0</span> days</p>
+                    <p><span id=year>0</span> years</p>
+                </div>
+            </div>
+
             <p>you've visited this page <span id=str></span> times</p>
         </div>
+
 
         <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
         <script type="module" src="./scripts/timer.js"></script>

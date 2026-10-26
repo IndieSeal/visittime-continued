@@ -11,6 +11,7 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var days = 0;
+var years = 0;
 
 window.addEventListener("load", async function() {
     str();
@@ -22,7 +23,7 @@ function str() {
     if (!streak) var streak = 1;
     else streak++;
 
-    document.getElementById("str").innerText = streak;
+    document.getElementById("str").innerText = streak.toLocaleString();
     window.localStorage.setItem("vtStr", streak);
 }
 async function sec() {
@@ -39,6 +40,10 @@ async function sec() {
                 if (hours % 24 == 0) {
                     days++;
                     daysElement.innerText = days.toLocaleString();
+                    if (days % 365 == 0) {
+                        years++;
+                        daysElement.innerText = years.toLocaleString();
+                    }
                 }
             }
         }
