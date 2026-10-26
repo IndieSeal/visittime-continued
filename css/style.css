@@ -69,3 +69,22 @@ body{
 .corner.clock:hover{
     max-width: 100px;
 }
+
+button{
+    width: 200px;
+    height: 75px;
+
+    border-radius: 5px;
+}
+
+.start{
+    background-color: green;
+}
+
+.stop{
+    background-color: red;
+}
+
+.restart{
+    background-color: blue;
+}
