@@ -23,7 +23,7 @@ Visit this webpage [here](https://indieseal.github.io/visittime-continued/). No 
 ## Built with:
 - **HTML**
 - **CSS**
-- **JavaScript***
+- **JavaScript**
 
 ## How to run locally:
 - Clone the repository: ```https://github.com/IndieSeal/visittime-continued.git```
