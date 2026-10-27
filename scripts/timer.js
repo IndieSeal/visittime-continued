@@ -1,5 +1,18 @@
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+var hourClockAud = document.getElementById("hourClock"); 
+hourClockAud.loop = false;
+
+const MUSIC_MAX_VOLUME = 0.2;
+const VOLUME_TRANSITION_SPEED = 0.1;
+var musicAud = document.getElementById("snowMusic"); 
+musicAud.loop = true;
+musicAud.volume = 0;
+
+var birdsAud = document.getElementById("birds"); 
+birdsAud.loop = true;
+birdsAud.volume = 1;
+
 const decisecondsElement = document.getElementById("ten");
 const secondsElement = document.getElementById("sec");
 const minutesElement = document.getElementById("min");
@@ -16,6 +29,8 @@ const timerElement = document.getElementById("timer");
 var deciseconds = 0;
 var isCounting = false;
 
+var hasBeenEnabled = false;
+
 startStopElement.onclick = startTimer;
 restartElement.onclick = resetTimer;
 
@@ -27,10 +42,25 @@ window.addEventListener("load", async function() {
     updateStreak();
 });
 
+window.addEventListener('pointerdown', (e) => {
+    if(hasBeenEnabled) return;
+  
+    if(birdsAud.paused) birdsAud.play();
+    hasBeenEnabled = true;
+});
+
+function clamp(min, max, value){
+    return Math.max(min, Math.min(value, max));
+}
+
+function lerp(currentPosition, targetPosition, value) {
+  return (1 - value) * currentPosition + value * targetPosition;
+}
+
 function startTimer(){
     isCounting = true;
     sec();
-    
+
     startStopElement.innerHTML = 'Pause';
     startStopElement.classList.add('stop');
     startStopElement.onclick = stopTimer;
@@ -53,6 +83,23 @@ function resetTimer(){
     updateText();
 }
 
+var lastTick = performance.now()
+
+function tick(nowish) {
+    let delta = clamp(0, 0.2, nowish - lastTick);
+    
+    lastTick = nowish;
+    window.requestAnimationFrame(tick);
+
+    if(!hasBeenEnabled) return;
+    if(musicAud.paused) musicAud.play();
+
+    musicAud.volume = clamp(0, MUSIC_MAX_VOLUME, lerp(musicAud.volume, isCounting ? MUSIC_MAX_VOLUME : 0, VOLUME_TRANSITION_SPEED * delta));
+    birdsAud.volume = clamp(0, 1, lerp(birdsAud.volume, isCounting ? 0 : 1, VOLUME_TRANSITION_SPEED * delta));
+}
+
+window.requestAnimationFrame(tick)
+
 function updateStreak() {
     var streak = Number(window.localStorage.getItem("vtStr"));
     if (!streak) var streak = 1;
@@ -61,9 +108,6 @@ function updateStreak() {
     document.getElementById("str").innerText = streak.toLocaleString();
     window.localStorage.setItem("vtStr", streak);
 }
-
-var hourClockAud = document.getElementById("hourClock"); 
-hourClockAud.loop = false;
 
 async function sec() {
     while (true) {
