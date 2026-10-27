@@ -1,10 +1,10 @@
-# Visit Time
-A webpage that counts the amount of time you've spent staring at it. All on a single line of code.
+# Visit Time - Continued
+A webpage that is a chronometer, but pretty???! and with MUSIC?! 
 
 ## Demo
-Visit this webpage [here](https://kpoovakan.github.io/visittime). No setup required. Open the link and stare.
+Visit this webpage [here](https://indieseal.github.io/visittime-continued/). No setup required. Open the link, click start and stare.
 
-## Features
+## Previous Features
 * Deciseconds
 * Seconds
 * Minutes
@@ -12,8 +12,26 @@ Visit this webpage [here](https://kpoovakan.github.io/visittime). No setup requi
 * Days
 * Page visits, stored locally
 
-## For Developers
-Visittime was going to be made into a winter-themed stopwatch of sorts, but this project has been discontinued. Developers are welcome to contribute to this project and bring it to its finish. The unminified HTML file is [here](minifiers/unminified.html) and all other files are for reference purposes.  
+## New Features
+* Years
+* Actual chronometer behaviour, instead of just staring
+* Your chronometer status, stored locally (in case you accidentaly leave :]!)
+* Better background
+* Music
+* SFX (wait an hour for this!!)
+
+## Built with:
+- **HTML**
+- **CSS**
+- **JavaScript***
+
+## How to run locally:
+- Clone the repository: ```https://github.com/IndieSeal/visittime-continued.git```
+- Open `index.html`
+- Enjoy VisitTime-Continued!
 
 ## Credits and Licensing
-Built by [kpoovakan](https://kpoovakan.github.io). Licensed under the [Boost Software License](https://github.com/kpoovakan/visittime/blob/main/LICENSE). The winter wonderland background was drawn in [Turbowarp](https://turbowarp.org/editor).
+Developed by: [Indie Seal](https://github.com/IndieSeal).<br>
+Built (originally) by [kpoovakan](https://kpoovakan.github.io).
+
+Licensed under the same previous license [Boost Software License](https://github.com/kpoovakan/visittime/blob/main/LICENSE). The winter wonderland background was drawn in [Turbowarp](https://turbowarp.org/editor), but updated by me with Inkscape!
